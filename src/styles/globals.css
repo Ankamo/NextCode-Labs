@@ -1,140 +1,98 @@
-* {
-  box-sizing: border-box; /* Asegurarse de que el tamaño del elemento incluye padding y borde */
-  margin: 0; /* Eliminar márgenes por defecto */
-  padding: 0; /* Eliminar padding por defecto */
+/* src/app/globals.css */
+
+/* Reset básico */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #0f0f0f;
-  color: #eaeaea;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Mantener al menos el 100% de la altura de la ventana */
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #f1f1f1;
+    background-color: #121212;
 }
 
-header {
-  text-align: center;
-  background-color: #232323;
-  border-bottom: 2px solid #fff;
-  width: 100%; /* Asegúrate de que el header ocupe todo el ancho */
-  padding: 0; /* Sin padding para evitar espacio interno */
+/* Encabezados */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    margin-bottom: 0.5em;
+    font-weight: 700;
 }
 
-.main-content {
-  flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
-  padding: 20px;
-  background-color: #2a2a2a;
-  border-radius: 8px;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.6);
-  max-width: 800px;
-  margin: 20px auto; /* Esto se queda así para centrar el contenido */
+h1 {
+    font-size: 2.5rem;
 }
 
-header h1 {
-  color: #fff;
+h2 {
+    font-size: 2rem;
 }
 
-nav {
-  background-color: #1f1f1f;
-  padding: 10px 0;
+h3 {
+    font-size: 1.75rem;
 }
 
-nav ul {
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
+/* Enlaces */
+a {
+    color: #1e90ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-nav ul li {
-  margin: 0 15px;
-  position: relative;
+a:hover {
+    color: #63b3ed;
 }
 
-nav a {
-  color: #ffffff;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
+/* Contenedores */
+main {
+    padding: 2rem;
 }
 
-nav a:hover {
-  background-color: #007bff;
-  color: #fff;
+header, footer {
+    padding: 1rem 2rem;
+    background-color: #1f1f1f;
 }
 
-.sub-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #1f1f1f;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-nav ul li:hover .sub-menu {
-  display: block;
-}
-
-h2, h3 {
-  color: #fff;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-p {
-  color: #d3d3d3;
-}
-
+/* Botones */
 button {
-  background-color: #ff7043;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+    background-color: #1e90ff;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #f4511e;
-  transform: scale(1.05);
+    background-color: #63b3ed;
 }
 
-input[type="text"], input[type="email"], textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #3a3a3a;
-  color: #eaeaea;
+/* Estilo para textos */
+p {
+    margin-bottom: 1em;
+    max-width: 800px;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
-  border-color: #007bff;
-  outline: none;
-}
+/* Estilos de responsividad */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
 
-/* src/components/footer.css */
+    h2 {
+        font-size: 1.5rem;
+    }
 
-.footer {
-  background-color: #1a1a1a; /* Fondo oscuro */
-  padding: 20px; /* Espaciado interno */
-  text-align: center; /* Centrar el texto */
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada */
-  border-radius: 10px; /* Bordes redondeados */
-  width: 100%; /* Ancho completo */
-  position: fixed; /* Posición fija */
-  bottom: 0; /* Pegado al fondo */
-}
-
-.footer-text {
-  color: #e0e0e0; /* Color del texto en gris claro */
-  font-size: 1rem; /* Tamaño de fuente del texto */
-  opacity: 0.8; /* Opacidad sutil */
+    main {
+        padding: 1.5rem;
+    }
 }
