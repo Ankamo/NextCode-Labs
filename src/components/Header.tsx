@@ -2,8 +2,15 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+    user: string | null; // Usuario autenticado
+}
+
+const Header: React.FC<HeaderProps> = ({ user }) => {
+    const { logout, isLoggedIn } = useAuth(); // Obtener la función logout desde el contexto
+
     return (
         <header className="w-full bg-gray-800 text-white py-4 px-8 flex justify-between items-center">
             <h1 className="text-2xl font-bold">NextCode Labs</h1>
@@ -11,9 +18,26 @@ const Header: React.FC = () => {
                 <Link href="/inicio" className="hover:text-blue-400">
                     Inicio
                 </Link>
-                <Link href="/ingresar" className="hover:text-blue-400">
-                    Panel
-                </Link>
+                {isLoggedIn && (
+                    <Link href="/panel" className="hover:text-blue-400">
+                        Panel
+                    </Link>
+                )}
+                {isLoggedIn ? (
+                    <>
+                        <span className="hover:text-blue-400">Bienvenido, {user}</span>
+                        <button
+                            onClick={logout}
+                            className="hover:text-blue-400 ml-4"
+                        >
+                            Cerrar Sesión
+                        </button>
+                    </>
+                ) : (
+                    <Link href="/ingresar" className="hover:text-blue-400">
+                        Iniciar Sesión
+                    </Link>
+                )}
             </nav>
         </header>
     );

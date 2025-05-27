@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import ClientHeader from '@/components/ClientHeader';
-import ClientFooter from '@/components/ClientFooter';
+import { AuthProvider } from '@/context/AuthContext';
+import ClientRedirect from '@/components/ClientRedirect'; // Nuevo componente para manejar redirección
 
 export const metadata = {
     title: 'NextCode Labs',
@@ -15,9 +16,12 @@ export default function RootLayout({
     return (
         <html lang="es">
             <body className="bg-gray-900 text-white">
-                <ClientHeader />
-                <main>{children}</main>
-                <ClientFooter />
+                <AuthProvider>
+                    <ClientRedirect>
+                        <ClientHeader />
+                        <main>{children}</main>
+                    </ClientRedirect>
+                </AuthProvider>
             </body>
         </html>
     );
