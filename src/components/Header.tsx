@@ -4,12 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 
-interface HeaderProps {
-    user: string | null; // Usuario autenticado
-}
-
-const Header: React.FC<HeaderProps> = ({ user }) => {
-    const { logout, isLoggedIn } = useAuth(); // Obtener la función logout desde el contexto
+const Header: React.FC = () => {
+    const { isLoggedIn, logout } = useAuth();
 
     return (
         <header className="w-full bg-gray-800 text-white py-4 px-8 flex justify-between items-center">
@@ -19,21 +15,16 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
                     Inicio
                 </Link>
                 {isLoggedIn && (
-                    <Link href="/panel" className="hover:text-blue-400">
-                        Panel
-                    </Link>
-                )}
-                {isLoggedIn ? (
                     <>
-                        <span className="hover:text-blue-400">Bienvenido, {user}</span>
-                        <button
-                            onClick={logout}
-                            className="hover:text-blue-400 ml-4"
-                        >
+                        <Link href="/panel" className="hover:text-blue-400">
+                            Panel
+                        </Link>
+                        <button onClick={logout} className="hover:text-blue-400">
                             Cerrar Sesión
                         </button>
                     </>
-                ) : (
+                )}
+                {!isLoggedIn && (
                     <Link href="/ingresar" className="hover:text-blue-400">
                         Iniciar Sesión
                     </Link>

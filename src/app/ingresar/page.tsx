@@ -15,24 +15,34 @@ const IngresarPage: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setErrorMessage('');
+
+        if (!username || !password) {
+            setErrorMessage('Por favor, complete todos los campos');
+            return;
+        }
 
         try {
             const res = await fetch('/data/usuario.json');
-            if (!res.ok) {
-                throw new Error('No se pudo cargar el archivo de usuario.');
-            }
+            if (!res.ok) throw new Error('Error del servidor');
+            
             const data = await res.json();
-
-            if (username === data.username && password === data.password) {
-                login(); // Actualizar el estado global de autenticación
-                setErrorMessage('');
-                router.push('/panel');
+            
+            if (username.trim().toLowerCase() === data.username.toLowerCase() && 
+                password === data.password) {
+                try {
+                    login(username); // Pasar el nombre de usuario al contexto
+                    router.push('/panel');
+                } catch (error) {
+                    console.error('Error de navegación:', error);
+                    setErrorMessage('Error al redirigir. Por favor, intente de nuevo.');
+                }
             } else {
                 setErrorMessage('Usuario o contraseña incorrectos');
             }
         } catch (error) {
-            console.error('Error al validar las credenciales:', error);
-            setErrorMessage('Hubo un problema al validar las credenciales.');
+            console.error('Error de autenticación:', error);
+            setErrorMessage('Error en el servidor. Por favor, intente más tarde.');
         }
     };
 
