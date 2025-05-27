@@ -1,29 +1,22 @@
-// src/components/Header.tsx
+'use client';
+
 import React from 'react';
-import Nav from './Nav';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
     return (
-        <header style={styles.header}>
-            <h1 style={styles.title}>NextCode Labs</h1>
-            <Nav />
+        <header className="w-full bg-gray-800 text-white py-4 px-8 flex justify-between items-center">
+            <h1 className="text-2xl font-bold">NextCode Labs</h1>
+            <nav className="space-x-4">
+                <Link href="/inicio" className="hover:text-blue-400">
+                    Inicio
+                </Link>
+                <Link href="/ingresar" className="hover:text-blue-400">
+                    Panel
+                </Link>
+            </nav>
         </header>
     );
-};
-
-const styles = {
-    header: {
-        padding: '1rem 2rem',
-        backgroundColor: '#1f1f1f',
-        color: '#ffffff',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: '1.5rem',
-        fontWeight: 'bold',
-    },
 };
 
 export default Header;

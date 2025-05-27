@@ -1,6 +1,6 @@
 import '../styles/globals.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import ClientHeader from '@/components/ClientHeader';
+import ClientFooter from '@/components/ClientFooter';
 
 export const metadata = {
     title: 'NextCode Labs',
@@ -14,10 +14,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang="es">
-            <body>
-                <Header />
+            <body className="bg-gray-900 text-white">
+                <ClientHeader />
                 <main>{children}</main>
-                <Footer />
+                <ClientFooter />
             </body>
         </html>
     );
